@@ -1,0 +1,11 @@
+---
+- name: jenkins-server
+  hosts: jenkins
+  become: true
+
+  roles:
+    - jenkins
+    - docker
+    - awscli
+    - common
+    - kubectl

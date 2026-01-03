@@ -1,0 +1,25 @@
+- name: Add jenkins repo
+  get_url:
+    url: http://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: Import Jenkins key
+  rpm_key:
+    state: present
+    key: http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+- name: Install Java
+  yum: 
+    name: java-17-amazon-corretto
+    state: present
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: present
+
+- name: Start Jenkins 
+  service:
+    name: jenkins
+    state: started
+    enabled: yes

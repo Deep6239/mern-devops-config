@@ -1,0 +1,2 @@
+[jenkins]
+jenkins-server ansible_host=13.234.136.153 ansible_user=ec2-user
