@@ -1,5 +1,10 @@
-- name: Download kubectl binary
+- name: Get latest kubectl version
+  shell: curl -L -s https://dl.k8s.io/release/stable.txt
+  register: kubectl_version
+
+- name: Download kubectl
   get_url:
-    url: https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2023-11-14/bin/linux/amd64/kubectl
+    url: "https://dl.k8s.io/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl"
     dest: /usr/local/bin/kubectl
     mode: '0755'
+    
